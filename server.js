@@ -28,7 +28,7 @@ connectDB()
 
 
 app.use(cors({
-    origin: "https://ghareebstarprogrammers.vercel.app",
+    origin: "http://localhost:5173",
     credentials: true
 }))
 
