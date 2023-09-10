@@ -28,14 +28,14 @@ connectDB()
 
 
 app.use(cors({
-    origin: "https://ghareebstarprogrammers.vercel.app",
+    origin: ["https://ghareebstarprogrammers.vercel.app"],
     credentials: true
 }))
 
 // It is mandatory, otherwise you will be unable to find the error why the image is not uploading 🤣😥
-app.use(fileUpload()) 
+app.use(fileUpload())
 
-app.use(express.json({ urlencoded: true }))
+app.use(express.json({ limit: '10mb' }));
 app.use(projectRouter)
 app.use(userRouter)
 app.use(testimonialRouter)

@@ -45,7 +45,6 @@ export const registerUser = async (req, res) => {
 
         return res.cookie("ghareebstar", userToken, {
             httpOnly: true,
-            maxAge: 15 * 24 * 60 * 60 * 1000
         }).status(201).json({
             success: true,
             message: "User Registered Successfully",
@@ -96,7 +95,6 @@ export const loginUser = async (req, res) => {
 
         return res.cookie("ghareebstar", userToken, {
             httpOnly: true,
-            maxAge: 15 * 24 * 60 * 60 * 1000
         }).status(200).json({
             success: true,
             message: "Logged In Successfully",
@@ -236,7 +234,6 @@ export const updateUserProfile = async (req, res) => {
 
         return res.cookie("ghareebstar", userToken, {
             httpOnly: true,
-            maxAge: 15 * 24 * 60 * 60
         }).status(200).json({
             success: true,
             message: "Profile Updated Successfully"

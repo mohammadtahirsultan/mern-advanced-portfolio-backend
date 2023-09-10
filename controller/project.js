@@ -59,6 +59,7 @@ export const addNewProject = async (req, res) => {
             cloudinaryRes = await cloudinary.v2.uploader.upload(req.body.image,
                 {
                     folder: "Ghareebstar-Projects",
+                    crop: "scale",
                 },
             );
         }
@@ -112,29 +113,29 @@ export const updateProject = async (req, res) => {
             if (project.image && project.image.public_id) {
 
                 let projectImageId = project.image.public_id
+
                 await cloudinary.v2.uploader.destroy(projectImageId)
+
 
                 cloudinaryRes = await cloudinary.v2.uploader.upload(req.body.image,
                     {
                         folder: "Ghareebstar-Projects",
+                        crop: "scale",
                     },
                 );
-            }
 
 
-            project.image = {
-                public_id: cloudinaryRes.public_id,
-                url: cloudinaryRes.secure_url
+                project.image = {
+                    public_id: cloudinaryRes.public_id,
+                    url: cloudinaryRes.secure_url
+                }
+                await project.save()
             }
         }
 
 
-
         project = await Project.findByIdAndUpdate(req.params.id, {
-            title, description, link, category, image: {
-                public_id: cloudinaryRes.public_id,
-                url: cloudinaryRes.secure_url
-            }
+            title, description, link, category
         })
 
         return res.status(200).json({
