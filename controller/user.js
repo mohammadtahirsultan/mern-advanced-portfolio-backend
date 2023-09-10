@@ -45,6 +45,8 @@ export const registerUser = async (req, res) => {
 
         return res.cookie("ghareebstar", userToken, {
             httpOnly: true,
+            sameSite:  "none",
+            secure: true,
         }).status(201).json({
             success: true,
             message: "User Registered Successfully",
@@ -95,6 +97,8 @@ export const loginUser = async (req, res) => {
 
         return res.cookie("ghareebstar", userToken, {
             httpOnly: true,
+            sameSite:  "none",
+            secure: true,
         }).status(200).json({
             success: true,
             message: "Logged In Successfully",
@@ -234,6 +238,8 @@ export const updateUserProfile = async (req, res) => {
 
         return res.cookie("ghareebstar", userToken, {
             httpOnly: true,
+            sameSite:  "none",
+            secure: true,
         }).status(200).json({
             success: true,
             message: "Profile Updated Successfully"
@@ -271,6 +277,8 @@ export const deleteUserProfile = async (req, res) => {
 
         return res.cookie("ghareebstar", null, {
             httpOnly: true,
+            sameSite:  "none",
+            secure: true,
             expires: new Date(Date.now()),
         }).status(200).json({
             success: true,
