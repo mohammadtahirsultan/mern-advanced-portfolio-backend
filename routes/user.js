@@ -6,9 +6,11 @@ const router = express.Router()
 
 
 const validateImageUpload = (req, res, next) => {
-    if (!req.file) {
-        return res.status(400).json({ message: 'No file uploaded' });
-    }
+    // console.log(req);
+    // console.log(req.body);
+    // if (!req.file) {
+    //     return res.status(400).json({ message: 'No file uploaded' });
+    // }
 
     const fileMimeType = fileType(req.file.buffer);
 
