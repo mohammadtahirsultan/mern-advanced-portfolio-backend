@@ -1,16 +1,17 @@
 import express from "express"
 import { loginUser, logoutUser, updateUserProfile, deleteUserProfile, registerUser, getMyProfile, forgotPassword, resetPassword } from "../controller/user.js"
 import { isAuthenticated } from "../auth/isAuthenticated.js"
+import multer from "multer"
 
+const upload = multer()
 const router = express.Router()
 
 
 const validateImageUpload = (req, res, next) => {
-    // console.log(req);
-    // console.log(req.body);
-    // if (!req.file) {
-    //     return res.status(400).json({ message: 'No file uploaded' });
-    // }
+    ;
+    if (!req.file) {
+        return res.status(400).json({ message: 'No file uploaded' });
+    }
 
     const fileMimeType = fileType(req.file.buffer);
 
@@ -21,7 +22,7 @@ const validateImageUpload = (req, res, next) => {
     next();
 };
 
-router.post("/user/register", validateImageUpload, registerUser)
+router.post("/user/register",upload.single("image"), validateImageUpload, registerUser)
 
 router.post("/user/login", loginUser)
 
