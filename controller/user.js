@@ -334,7 +334,7 @@ export const forgotPassword = async (req, res) => {
         await user.save()
 
         //front-end url
-        let resetPasswordURL = `http://localhost:5173/password/reset/${resetToken}`
+        let resetPasswordURL = `https://ghareebstarprogrammers.vercel.app/password/reset/${resetToken}`
 
         let message = `You Requested For Password Reset on Ghareebstar, \n\n Here is Your Reset Password URL, \n\n ${resetPasswordURL}. \n\n If you have not requested for reset password , Please Ignore this Email`
 
