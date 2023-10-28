@@ -22,7 +22,7 @@ const validateImageUpload = (req, res, next) => {
     next();
 };
 
-router.post("/user/register",upload.single("image"), registerUser)
+router.post("/user/register", registerUser)
 
 router.post("/user/login", loginUser)
 
