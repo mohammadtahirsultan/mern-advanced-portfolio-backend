@@ -242,8 +242,8 @@ export const updateUserProfile = async (req, res) => {
         }
         
         if (password) {
-            // this is database         this is given  from user to update database
             let hashedPassword = await bcrypt.hash(password, 10)
+            // this is database         this is given  from user to update database
             user.password = hashedPassword;
         }
 
