@@ -7,13 +7,13 @@ const router = express.Router()
 
 const validateImageUpload = (req, res, next) => {
     if (!req.file) {
-        return res.status(400).json({ error: 'No file uploaded' });
+        return res.status(400).json({ message: 'No file uploaded' });
     }
 
     const fileMimeType = fileType(req.file.buffer);
 
     if (!fileMimeType || !fileMimeType.mime.startsWith('image')) {
-        return res.status(400).json({ error: 'Only image files are allowed' });
+        return res.status(400).json({ message: 'Only image files are allowed' });
     }
 
     next();
