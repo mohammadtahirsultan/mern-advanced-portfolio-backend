@@ -5,20 +5,36 @@ import sendEmail from "../sendEmail/sendEmail.js"
 import crypto from 'crypto'
 import cloudinary from 'cloudinary'
 
+
+
+
+const validateImageUpload = (req, res, next) => {
+    if (!req.file) {
+        return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    const fileMimeType = fileType(req.file.buffer);
+
+    if (!fileMimeType || !fileMimeType.mime.startsWith('image')) {
+        return res.status(400).json({ error: 'Only image files are allowed' });
+    }
+
+    next();
+};
 export const registerUser = async (req, res) => {
 
     try {
 
-        let cloudinaryRes;
-        if (req.body.image) {
-            cloudinaryRes = await cloudinary.v2.uploader.upload(req.body.image,
-                {
-                    folder: "Ghareebstar-User",
-                    crop: "scale",
-                    width: 150
-                },
-            );
+        if (!req.file) {
+            return res.status(400).json({ error: 'Image is required' });
         }
+
+        // Your Cloudinary upload logic
+        const cloudinaryRes = await cloudinary.v2.uploader.upload(req.file.buffer, {
+            folder: "Ghareebstar-User",
+            crop: "scale",
+            width: 150,
+        });
 
         // we will add image later 
         const { name, email, password } = req.body
@@ -45,7 +61,7 @@ export const registerUser = async (req, res) => {
 
         return res.cookie("ghareebstar", userToken, {
             httpOnly: true,
-            sameSite:  "none",
+            sameSite: "none",
             secure: true,
         }).status(201).json({
             success: true,
@@ -97,7 +113,7 @@ export const loginUser = async (req, res) => {
 
         return res.cookie("ghareebstar", userToken, {
             httpOnly: true,
-            sameSite:  "none",
+            sameSite: "none",
             secure: true,
         }).status(200).json({
             success: true,
@@ -238,7 +254,7 @@ export const updateUserProfile = async (req, res) => {
 
         return res.cookie("ghareebstar", userToken, {
             httpOnly: true,
-            sameSite:  "none",
+            sameSite: "none",
             secure: true,
         }).status(200).json({
             success: true,
@@ -272,12 +288,12 @@ export const deleteUserProfile = async (req, res) => {
 
         let userImageId = user.image.public_id
         await cloudinary.v2.uploader.destroy(userImageId)
-        
+
         await User.deleteOne(user)
 
         return res.cookie("ghareebstar", null, {
             httpOnly: true,
-            sameSite:  "none",
+            sameSite: "none",
             secure: true,
             expires: new Date(Date.now()),
         }).status(200).json({

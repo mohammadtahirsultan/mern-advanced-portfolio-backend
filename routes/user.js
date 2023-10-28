@@ -4,7 +4,22 @@ import { isAuthenticated } from "../auth/isAuthenticated.js"
 
 const router = express.Router()
 
-router.post("/user/register", registerUser)
+
+const validateImageUpload = (req, res, next) => {
+    if (!req.file) {
+        return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    const fileMimeType = fileType(req.file.buffer);
+
+    if (!fileMimeType || !fileMimeType.mime.startsWith('image')) {
+        return res.status(400).json({ error: 'Only image files are allowed' });
+    }
+
+    next();
+};
+
+router.post("/user/register", validateImageUpload, registerUser)
 
 router.post("/user/login", loginUser)
 
