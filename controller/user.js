@@ -36,7 +36,6 @@ export const registerUser = async (req, res) => {
             );
         }
 
-        // we will add image later 
         const { name, email, password } = req.body
 
         let user = await User.findOne({ email })
