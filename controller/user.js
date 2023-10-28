@@ -240,9 +240,11 @@ export const updateUserProfile = async (req, res) => {
 
             user.email = email;
         }
+        
         if (password) {
             // this is database         this is given  from user to update database
-            user.password = password;
+            let hashedPassword = await bcrypt.hash(password, 10)
+            user.password = hashedPassword;
         }
 
 
