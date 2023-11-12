@@ -6,12 +6,26 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
         maxLength: 12,
-        minLength: 3
+        minLength: 3,
+        validate: {
+            validator: function (value) {
+                // Use a regular expression to check if the value contains only alphabetic characters
+                return /^[a-zA-Z]+$/.test(value);
+            },
+            message: props => `${props.value} is not a valid name. Only alphabetic characters are allowed.`,
+        },
     },
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        validate: {
+            validator: function (value) {
+                // Use a regular expression to check if the value is a valid email address
+                return /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value);
+            },
+            message: props => `${props.value} is not a valid email address.`,
+        },
     },
     password: {
         type: String,
