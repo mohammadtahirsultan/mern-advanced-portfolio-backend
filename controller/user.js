@@ -169,7 +169,7 @@ export const logoutUser = async (req, res) => {
                 message: "User Not Found"
             })
         }
-        return res.json({ message: `yeh hai token : ${user}` })
+        // return res.json({ message: `yeh hai token : ${user}` })
         return res.cookie("ghareebstar", null, {
             expires: new Date(0),
             httpOnly: true,
