@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
 
     name: {
         type: String,
-        maxLength: 12,
+        maxLength: 15,
         minLength: 3,
         validate: {
             validator: function (value) {
