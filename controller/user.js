@@ -60,7 +60,7 @@ export const registerUser = async (req, res) => {
 
         return res.cookie("ghareebstar", userToken, {
             httpOnly: true,
-            sameSite:  "none",
+            sameSite: "none",
             secure: true,
         }).status(201).json({
             success: true,
@@ -111,7 +111,7 @@ export const loginUser = async (req, res) => {
 
         return res.cookie("ghareebstar", userToken, {
             httpOnly: true,
-            sameSite:  "none",
+            sameSite: "none",
             secure: true,
         }).status(200).json({
             success: true,
@@ -173,6 +173,8 @@ export const logoutUser = async (req, res) => {
         return res.cookie("ghareebstar", null, {
             httpOnly: true,
             expires: new Date(0),
+            secure: true,
+            sameSite: "None",
         }).status(200).json({
             success: true,
             message: "Logged Out Successfully"
@@ -240,7 +242,7 @@ export const updateUserProfile = async (req, res) => {
 
             user.email = email;
         }
-        
+
         if (password) {
             let hashedPassword = await bcrypt.hash(password, 10)
             // this is database         this is given  from user to update database
@@ -254,7 +256,7 @@ export const updateUserProfile = async (req, res) => {
 
         return res.cookie("ghareebstar", userToken, {
             httpOnly: true,
-            sameSite:  "none",
+            sameSite: "none",
             secure: true,
         }).status(200).json({
             success: true,
@@ -288,12 +290,12 @@ export const deleteUserProfile = async (req, res) => {
 
         let userImageId = user.image.public_id
         await cloudinary.v2.uploader.destroy(userImageId)
-        
+
         await User.deleteOne(user)
 
         return res.cookie("ghareebstar", null, {
             httpOnly: true,
-            sameSite:  "none",
+            sameSite: "none",
             secure: true,
             expires: new Date(Date.now()),
         }).status(200).json({
