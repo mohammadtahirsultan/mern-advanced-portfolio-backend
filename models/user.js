@@ -9,11 +9,11 @@ const userSchema = new mongoose.Schema({
         minLength: 3,
         validate: {
             validator: function (value) {
-                // Use a regular expression to check if the value contains only alphabetic characters
-                return /^[a-zA-Z]+$/.test(value);
+              // Use a regular expression to check if the value contains only alphabetic characters and spaces
+              return /^[a-zA-Z\s]+$/.test(value);
             },
-            message: props => `${props.value} is not a valid name. Only alphabetic characters are allowed.`,
-        },
+            message: props => `${props.value} is not a valid name. Only alphabetic characters and spaces are allowed.`,
+          },
     },
     email: {
         type: String,
