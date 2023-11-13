@@ -107,19 +107,19 @@ export const loginUser = async (req, res) => {
             })
         }
 
-        // const userToken = jwt.sign({ _id: user._id }, process.env.JWT_TOKEN_SECRET);
+        const userToken = jwt.sign({ _id: user._id }, process.env.JWT_TOKEN_SECRET);
 
 
-        // return res.cookie("ghareebstar", userToken, {
-        //     httpOnly: true,
-        //     sameSite: "none",
-        //     secure: true,
-        // }).status(200).json({
-        //     success: true,
-        //     message: "Logged In Successfully",
-        //     user
-        // })
-        setCookie(user, res, `Welcome Back ${user.name}!`, 200);
+        return res.cookie("ghareebstar", userToken, {
+            httpOnly: true,
+            sameSite: "none",
+            secure: true,
+        }).status(200).json({
+            success: true,
+            message: "Logged In Successfully",
+            user
+        })
+        // setCookie(user, res, `Welcome Back ${user.name}!`, 200);
 
 
     } catch (error) {
@@ -172,17 +172,17 @@ export const logoutUser = async (req, res) => {
                 message: "User Not Found"
             })
         }
-        // return res.cookie("ghareebstar", null, {
-        //     expires: new Date(0),
-        //     httpOnly: true,
-        //     sameSite: "none",
-        //     secure: true,
-        // }).status(200).json({
-        //     success: true,
-        //     message: "Logged Out Successfully"
-        // })
+        return res.cookie("ghareebstar", null, {
+            expires: new Date(0),
+            httpOnly: true,
+            sameSite: "none",
+            secure: true,
+        }).status(200).json({
+            success: true,
+            message: "Logged Out Successfully"
+        })
         
-    setCookie(user, res, "User Registered Successfully!", 201);
+    // setCookie(user, res, "User Registered Successfully!", 201);
 
     } catch (error) {
         return res.status(500).json({
