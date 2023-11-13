@@ -107,7 +107,7 @@ export const loginUser = async (req, res) => {
             })
         }
 
-        const userToken = jwt.sign({ _id: user._id }, process.env.JWT_TOKEN_SECRET);
+        // const userToken = jwt.sign({ _id: user._id }, process.env.JWT_TOKEN_SECRET);
 
 
         // return res.cookie("ghareebstar", userToken, {
