@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt'
 import sendEmail from "../sendEmail/sendEmail.js"
 import crypto from 'crypto'
 import cloudinary from 'cloudinary'
-
+import setCookie from '../cookie/setCookie.js'
 
 
 
@@ -58,15 +58,16 @@ export const registerUser = async (req, res) => {
 
         const userToken = jwt.sign({ _id: user._id }, process.env.JWT_TOKEN_SECRET);
 
-        return res.cookie("ghareebstar", userToken, {
-            httpOnly: true,
-            sameSite: "none",
-            secure: true,
-        }).status(201).json({
-            success: true,
-            message: "User Registered Successfully",
-            user
-        })
+        // return res.cookie("ghareebstar", userToken, {
+        //     httpOnly: true,
+        //     sameSite: "none",
+        //     secure: true,
+        // }).status(201).json({
+        //     success: true,
+        //     message: "User Registered Successfully",
+        //     user
+        // })
+        
 
     } catch (error) {
         return res.status(500).json({
@@ -109,15 +110,17 @@ export const loginUser = async (req, res) => {
         const userToken = jwt.sign({ _id: user._id }, process.env.JWT_TOKEN_SECRET);
 
 
-        return res.cookie("ghareebstar", userToken, {
-            httpOnly: true,
-            sameSite: "none",
-            secure: true,
-        }).status(200).json({
-            success: true,
-            message: "Logged In Successfully",
-            user
-        })
+        // return res.cookie("ghareebstar", userToken, {
+        //     httpOnly: true,
+        //     sameSite: "none",
+        //     secure: true,
+        // }).status(200).json({
+        //     success: true,
+        //     message: "Logged In Successfully",
+        //     user
+        // })
+        setCookie(user, res, `Welcome Back ${user.name}!`, 200);
+
 
     } catch (error) {
         return res.status(500).json({
@@ -169,17 +172,17 @@ export const logoutUser = async (req, res) => {
                 message: "User Not Found"
             })
         }
-        // return res.json({ message: `yeh hai token : ${user}` })
-        return res.cookie("ghareebstar", null, {
-            expires: new Date(0),
-            httpOnly: true,
-            sameSite: "none",
-            secure: true,
-        }).status(200).json({
-            success: true,
-            message: "Logged Out Successfully"
-        })
-
+        // return res.cookie("ghareebstar", null, {
+        //     expires: new Date(0),
+        //     httpOnly: true,
+        //     sameSite: "none",
+        //     secure: true,
+        // }).status(200).json({
+        //     success: true,
+        //     message: "Logged Out Successfully"
+        // })
+        
+    setCookie(user, res, "User Registered Successfully!", 201);
 
     } catch (error) {
         return res.status(500).json({
