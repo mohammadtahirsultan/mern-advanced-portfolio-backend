@@ -5,7 +5,7 @@ const setCookie = async (user, res, message, statusCode = 200) => {
   res
     .status(statusCode)
     .cookie("ghareebstar", token, {
-      maxAge: 15 * 24 * 60 * 60 * 1000,
+      maxAge: "15d",
       httpOnly: true,
       sameSite: "none",
       secure: true,
