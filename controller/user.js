@@ -134,12 +134,12 @@ export const getMyProfile = async (req, res) => {
 
 export const logoutUser = async (req, res) => {
     try {
-        return res.cookie("ghareebstar", null, {
+        return res.status(200).cookie("ghareebstar", null, {
             expires: new Date(0),
             sameSite: "none",
             secure: true,
             httpOnly: true,
-        }).status(200).json({
+        }).json({
             success: true,
             message: "Logged Out Successfully"
         })
