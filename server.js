@@ -8,6 +8,8 @@ import adminRouter from './routes/adminRoute.js'
 import cors from 'cors'
 import cloudinary from 'cloudinary';
 import fileUpload from 'express-fileupload'
+import passport from 'passport'
+import session from 'express-session'
 
 const app = express()
 
@@ -32,9 +34,13 @@ app.use(cors({
     credentials: true
 }))
 
+// Use session middleware
+app.use(session({ secret: 'your-secret-key', resave: true, saveUninitialized: true }));
+// Initialize Passport and use session for persistent login sessions
+app.use(passport.initialize());
+app.use(passport.session());
 // It is mandatory, otherwise you will be unable to find the error why the image is not uploading 🤣😥
 app.use(fileUpload())
-
 app.use(express.json({ limit: '10mb' }));
 app.use(projectRouter)
 app.use(userRouter)

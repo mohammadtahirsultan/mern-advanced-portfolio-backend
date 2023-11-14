@@ -147,6 +147,7 @@ export const logoutUser = async (req, res) => {
         //         message: "Logout Successfully!",
         //     });
         req.logout()
+        // setCookie(null, res, "Logout", 200)
         return res.status(200).json({
             success: true,
             message: "Logout successful",
