@@ -11,7 +11,7 @@ router.post("/user/login", loginUser)
 
 router.get("/user/profile", isAuthenticated, getMyProfile)
 
-router.get("/user/logout", isAuthenticated,clearCookie, logoutUser)
+router.get("/user/logout", clearCookie, logoutUser)
 
 router.put("/user/update", isAuthenticated, updateUserProfile)
 
