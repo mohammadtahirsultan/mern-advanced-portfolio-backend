@@ -135,7 +135,7 @@ export const getMyProfile = async (req, res) => {
 export const logoutUser = async (req, res) => {
     try {
         return res.status(200).cookie("ghareebstar", null, {
-            expires: new Date(0),
+            maxAge: 0,
             sameSite: "none",
             secure: true,
             httpOnly: true,
