@@ -16,6 +16,6 @@ const setCookie = async (user, res, message, statusCode = 200) => {
       user,
     });
 };
-;
+
 
 export default setCookie;
