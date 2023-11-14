@@ -134,7 +134,7 @@ export const getMyProfile = async (req, res) => {
 
 export const logoutUser = async (req, res) => {
     try {
-        return res.cookie("ghareebstar", null, { httpOnly: true, }).status(200).json({
+        return res.cookie("janu", null, { httpOnly: true, }).status(200).json({
             success: true,
             message: "Logged Out Successfully"
         })
