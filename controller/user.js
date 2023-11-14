@@ -147,7 +147,7 @@ export const logoutUser = async (req, res) => {
         return res
             .status(200)
             .cookie("ghareebstar", "", {
-                expires: new Date(0),
+                expires: new Date(Date.now()),
                 sameSite: "none",
                 secure: true,
             })
