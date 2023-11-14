@@ -7,20 +7,6 @@ import cloudinary from 'cloudinary'
 import setCookie from '../cookie/setCookie.js'
 
 
-
-const validateImageUpload = (req, res, next) => {
-    if (!req.file) {
-        return res.status(400).json({ error: 'No file uploaded' });
-    }
-
-    const fileMimeType = fileType(req.file.buffer);
-
-    if (!fileMimeType || !fileMimeType.mime.startsWith('image')) {
-        return res.status(400).json({ error: 'Only image files are allowed' });
-    }
-
-    next();
-};
 export const registerUser = async (req, res) => {
 
     try {
@@ -135,7 +121,7 @@ export const loginUser = async (req, res) => {
 export const getMyProfile = async (req, res) => {
     try {
 
-        let user = await User.findById(req.user._id)
+        let user = await User.findById(req?.user?._id)
 
         if (!user) {
             return res.status(404).json({
