@@ -134,7 +134,7 @@ export const getMyProfile = async (req, res) => {
 
 export const logoutUser = async (req, res) => {
     try {
-        return res.cookie("janu", null, {
+        return res.cookie("ghareebstar", null, {
             expires: new Date(0),
             sameSite: "none",
             secure: true,
