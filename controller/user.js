@@ -67,7 +67,7 @@ export const registerUser = async (req, res) => {
         //     message: "User Registered Successfully",
         //     user
         // })
-        
+
         setCookie(user, res, `Registered Successfully!`, 201);
 
     } catch (error) {
@@ -171,6 +171,18 @@ export const logoutUser = async (req, res) => {
                 message: "User Not Found"
             })
         }
+
+        return res
+            .status(200)
+            .cookie("ghareebstar", "", {
+                expires: new Date(Date.now()),
+                sameSite: process.env.NODE_ENV === "Development" ? "lax" : "none",
+                secure: process.env.NODE_ENV === "Development" ? false : true,
+            })
+            .json({
+                success: true,
+                message: "Logout Successfully!",
+            });
         // return res.cookie("ghareebstar", null, {
         //     expires: new Date(0),
         //     httpOnly: true,
@@ -180,8 +192,8 @@ export const logoutUser = async (req, res) => {
         //     success: true,
         //     message: "Logged Out Successfully"
         // })
-        
-    setCookie(user, res, "User Registered Successfully!", 201);
+
+        setCookie(user, res, "User Registered Successfully!", 201);
 
     } catch (error) {
         return res.status(500).json({
