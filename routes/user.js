@@ -1,6 +1,6 @@
 import express from "express"
 import { loginUser, logoutUser, updateUserProfile, deleteUserProfile, registerUser, getMyProfile, forgotPassword, resetPassword } from "../controller/user.js"
-import { isAuthenticated } from "../auth/isAuthenticated.js"
+import { clearCookie, isAuthenticated } from "../auth/isAuthenticated.js"
 
 
 const router = express.Router()
@@ -11,7 +11,7 @@ router.post("/user/login", loginUser)
 
 router.get("/user/profile", isAuthenticated, getMyProfile)
 
-router.get("/user/logout", isAuthenticated, logoutUser)
+router.get("/user/logout", isAuthenticated,clearCookie, logoutUser)
 
 router.put("/user/update", isAuthenticated, updateUserProfile)
 
