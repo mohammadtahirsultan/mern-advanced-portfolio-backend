@@ -176,8 +176,8 @@ export const logoutUser = async (req, res) => {
             .status(200)
             .cookie("ghareebstar", "", {
                 expires: new Date(0),
-                sameSite: process.env.NODE_ENV === "Development" ? "lax" : "none",
-                secure: process.env.NODE_ENV === "Development" ? false : true,
+                sameSite: "none",
+                secure: true,
             })
             .json({
                 success: true,
