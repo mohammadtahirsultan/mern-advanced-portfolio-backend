@@ -146,7 +146,7 @@ export const logoutUser = async (req, res) => {
 
         return res
             .status(200)
-            .cookie("ghareebstar", undefined, {
+            .cookie("ghareebstar", "", {
                 expires: new Date(0),
                 sameSite: "none",
                 secure: true,
