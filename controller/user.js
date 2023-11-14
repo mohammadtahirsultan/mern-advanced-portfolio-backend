@@ -134,20 +134,10 @@ export const getMyProfile = async (req, res) => {
 
 export const logoutUser = async (req, res) => {
     try {
-
-        let user = await User.findById(req?.user?._id)
-
-        if (!user) {
-            return res.status(404).json({
-                success: false,
-                message: "User Not Found"
-            })
-        }
-
         return res
             .status(200)
             .cookie("ghareebstar", "", {
-                expires: new Date(Date.now()),
+                expires: new Date(0),
                 sameSite: "none",
                 secure: true,
             })
