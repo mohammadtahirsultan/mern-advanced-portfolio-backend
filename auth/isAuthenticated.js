@@ -42,7 +42,9 @@ export const clearCookie = async (req, res, next) => {
             })
         }
 
-        cookieFound = null
+        cookieFound = undefined
+
+        req.user = undefined
 
         next();
 
