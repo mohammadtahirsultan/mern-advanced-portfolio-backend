@@ -17,7 +17,7 @@ export const registerUser = async (req, res) => {
                 {
                     folder: "Ghareebstar-User",
                     crop: "scale",
-                    width: 150
+                    
                 },
             );
         }
@@ -180,7 +180,7 @@ export const updateUserProfile = async (req, res) => {
                     {
                         folder: "Ghareebstar-User",
                         crop: "scale",
-                        width: 150
+                        
                     },
                 );
             }
