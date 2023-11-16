@@ -18,7 +18,7 @@ export const addTestimonial = async (req, res) => {
 
         return res.status(201).json({
             success: true,
-            message: "Thanks for Review",
+            message: "Thanks, Review is Submitted for Approval",
             testimonial
         })
 
