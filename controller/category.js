@@ -17,10 +17,7 @@ export const getAllCategories = async (req, res) => {
 
 export const addNewCategory = async (req, res) => {
     try {
-        const { category } = req.body
-        await Category.create({
-            category
-        })
+        await Category.create(req.body.category)
 
         return res.status(201).json({
             success: true,
@@ -57,7 +54,7 @@ export const editCategory = async (req, res) => {
         const { id } = req.params
 
         const { category } = req.body
-        
+
         let categoryFound = await Category.findById(id)
 
         categoryFound.category = category
