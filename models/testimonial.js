@@ -17,9 +17,6 @@ const testimonialSchema = new mongoose.Schema({
         default: false
     }
 
-
-
-
 })
 
 
