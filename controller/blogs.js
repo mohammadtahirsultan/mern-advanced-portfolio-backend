@@ -1,6 +1,6 @@
-import Blog from "../model/blog.js"
+import Blog from "../models/blog.js"
 import cloudinary from 'cloudinary'
-import Category from "../model/category.js"
+import Category from "../models/category.js"
 
 export const getAllBlogs = async (req, res) => {
     try {
