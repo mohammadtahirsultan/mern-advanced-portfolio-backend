@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
         validate: {
             validator: function (value) {
                 // Use a regular expression to check if the value is a valid email address
-                return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+\s]{8,}$/.test(value);
+                return /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d ]{8,}$/.test(value);
             },
             message: props => `${props.value} is not a valid Password.`,
         },
