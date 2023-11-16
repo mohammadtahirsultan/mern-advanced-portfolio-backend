@@ -17,6 +17,7 @@ export const registerUser = async (req, res) => {
                 {
                     folder: "Ghareebstar-User",
                     crop: "scale",
+                    width:300
                     
                 },
             );
