@@ -10,11 +10,11 @@ router.get("/categories/all", getAllCategories)
 
 router.get("/category/:id", getCategory)
 
-router.post("/category/create", isAuthenticated, isAdmin, addNewCategory)
+router.post("/category/create", addNewCategory)
 
-router.delete("/category/:id", isAuthenticated, isAdmin, deleteCategory)
+router.delete("/category/:id", deleteCategory)
 
-router.put("/category/:id",isAuthenticated,isAdmin, editCategory)
+router.put("/category/:id", editCategory)
 
 
 
