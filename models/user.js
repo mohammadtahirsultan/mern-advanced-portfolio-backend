@@ -9,11 +9,11 @@ const userSchema = new mongoose.Schema({
         minLength: 3,
         validate: {
             validator: function (value) {
-              // Use a regular expression to check if the value contains only alphabetic characters and spaces
-              return /^[a-zA-Z\s]+$/.test(value);
+                // Use a regular expression to check if the value contains only alphabetic characters and spaces
+                return /^[a-zA-Z\s]+$/.test(value);
             },
             message: props => `${props.value} is not a valid name. Only alphabetic characters and spaces are allowed.`,
-          },
+        },
     },
     email: {
         type: String,
@@ -29,7 +29,14 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        validate: {
+            validator: function (value) {
+                // Use a regular expression to check if the value is a valid email address
+                return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+\s]{8,}$/.test(value);
+            },
+            message: props => `${props.value} is not a valid Password.`,
+        },
     },
     image: {
         public_id: {
