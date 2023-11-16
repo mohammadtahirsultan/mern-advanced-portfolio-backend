@@ -9,11 +9,11 @@ const router = express.Router()
 router.get("/blogs/all", getAllBlogs)
 router.get("/blog/:id", getSingleBlog)
 
-router.post("/blog/create", isAuthenticated, isAdmin, addNewBlog)
+router.post("/blog/create", addNewBlog)
 
-router.delete("/blog/delete/:id", isAuthenticated, isAdmin, deleteBlog)
+router.delete("/blog/delete/:id", deleteBlog)
 
-router.put("/blog/:id", isAuthenticated, isAdmin, updateBlog)
+router.put("/blog/:id", updateBlog)
 
 
 export default router
