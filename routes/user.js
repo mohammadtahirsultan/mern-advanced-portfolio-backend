@@ -1,6 +1,6 @@
 import express from "express"
 import { loginUser, logoutUser, updateUserProfile, deleteUserProfile, registerUser, getMyProfile, forgotPassword, resetPassword } from "../controller/user.js"
-import { clearCookie, isAuthenticated } from "../auth/isAuthenticated.js"
+import { isAuthenticated } from "../auth/isAuthenticated.js"
 
 
 const router = express.Router()
