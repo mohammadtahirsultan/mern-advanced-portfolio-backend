@@ -4,6 +4,8 @@ import connectDB from './database/db.js'
 import projectRouter from './routes/project.js'
 import userRouter from './routes/user.js'
 import testimonialRouter from './routes/testimonial.js'
+import blogRouter from './routes/blogs.js'
+import categoryRouter from './routes/category.js'
 import adminRouter from './routes/adminRoute.js'
 import cors from 'cors'
 import cloudinary from 'cloudinary';
@@ -26,7 +28,6 @@ cloudinary.config({
 
 connectDB()
 
-
 app.use(cors({
     origin: "https://ghareebstarprogrammers.vercel.app",
     credentials: true
@@ -39,7 +40,10 @@ app.use(express.json({ limit: '10mb' }));
 app.use(projectRouter)
 app.use(userRouter)
 app.use(testimonialRouter)
+app.use(blogRouter)
+app.use(categoryRouter)
 app.use(adminRouter)
+
 
 app.get("/", (req, res) => {
     res.send("Hello World")
