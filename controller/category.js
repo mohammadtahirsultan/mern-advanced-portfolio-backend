@@ -27,7 +27,7 @@ export const addNewCategory = async (req, res) => {
     } catch (error) {
         return res.json({
             success: false,
-            error: error
+            error:"Hello World"
         })
     }
 }
