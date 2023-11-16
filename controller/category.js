@@ -17,6 +17,7 @@ export const getAllCategories = async (req, res) => {
 
 export const addNewCategory = async (req, res) => {
     try {
+        return res.json("Category", req.body)
         await Category.create(req.body.category)
 
         return res.status(201).json({
