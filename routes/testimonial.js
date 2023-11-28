@@ -12,7 +12,7 @@ router.post("/testimonial/add", isAuthenticated, addTestimonial)
 
 router.put("/testimonial/:id", approveTestimonial)
 
-router.delete("/testimonial/:id", isAuthenticated,isAdmin, deleteTestimonial)
+router.delete("/testimonial/:id", isAuthenticated, isAdmin, deleteTestimonial)
 
 
 

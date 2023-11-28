@@ -62,7 +62,7 @@ export const clearCookie = async (req, res, next) => {
 
 export const isAdmin = (req, res, next) => {
 
-    if (req.user.role !== "admin") {
+    if (req.user.role !== "dhola") {
         return res.status(400).json({
             success: false,
             error: "Only Admin is Allowed to Access this Page!"
