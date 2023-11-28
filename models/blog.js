@@ -5,7 +5,7 @@ const blogSchema = new mongoose.Schema({
     title: String,
     author: {
         type: String,
-        default: "0x56e1Bc1192937B25cb8bdc4Ac23d6F63E8F88321"
+        default:"Mohammad Tahir"
     },
     shortDescription: String,
     category: {
